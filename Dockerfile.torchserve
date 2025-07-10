@@ -1,0 +1,22 @@
+FROM pytorch/torchserve:latest-gpu
+
+# Instalar dependencias adicionales
+RUN pip install --no-cache-dir \
+    numpy==1.24.3 \
+    pandas==2.0.3 \
+    pymongo==4.6.0 \
+    redis==5.0.1
+
+# Copiar el modelo y archivos necesarios
+COPY modelo/ /app/modelo/
+COPY backend/torchserve_handler.py /home/model-server/torchserve_handler.py
+COPY backend/config.properties /home/model-server/config.properties
+
+# Crear directorio para el modelo
+RUN mkdir -p /home/model-server/model-store
+
+# Exponer puertos
+EXPOSE 8080 8081 8082
+
+# Comando por defecto
+CMD ["torchserve", "--start", "--model-store", "/home/model-server/model-store", "--ts-config", "/home/model-server/config.properties"] 

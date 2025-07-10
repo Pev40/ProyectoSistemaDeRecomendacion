@@ -1,0 +1,33 @@
+# Configuración de Qdrant
+QDRANT_HOST=localhost
+QDRANT_PORT=6333
+QDRANT_COLLECTION_NAME=movies
+
+# Configuración del modelo
+MODEL_PATH=../modelo/pre_trained/gsasrec-ml1m-step_86064-t_0.75-negs_256-emb_128-dropout_0.5-metric_0.1974453226738962.pt
+EMBEDDING_DIM=128
+
+# Configuración de FAISS
+FAISS_INDEX_TYPE=flat
+FAISS_INDEX_PATH=faiss_index
+
+# Configuración de la API
+API_HOST=0.0.0.0
+API_PORT=8000
+API_WORKERS=4
+
+# Configuración de sincronización
+SYNC_INTERVAL_HOURS=6
+SYNC_ENABLED=true
+
+# Configuración de logging
+LOG_LEVEL=INFO
+LOG_FILE=sync_service.log
+
+# Configuración de cache
+USER_CACHE_SIZE=1000
+USER_CACHE_TTL=3600
+
+# Configuración de monitoreo
+METRICS_ENABLED=true
+METRICS_INTERVAL_MINUTES=5 
